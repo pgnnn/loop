@@ -1,3 +1,11 @@
+data_source1.csv contains status of the stores
+data_source2.csv contains business hours of all the stores
+data_source3.csv contains Timezone for the stores
+
+functions.py contains the whole code
+
+
+
 # Take home interview - Store Monitoring
 
 This will be a take-home interview that tests real-life problem-solving ability, ability to build something from scratch and handle complex algorithmic problems. 
