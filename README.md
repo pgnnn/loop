@@ -1,3 +1,30 @@
+There are many ways to calculate uptime and downtime, I have calculated in a way That 
+for example, consecutive timestamps in data_source1.csv (i.e contains a status for roughly one hour for each store) are 
+9am 'active', 10:12am 'inactive', 1:10pm 'inactive' ;;business_hours for this store is 8am to 2pm. In this case, I have taken 8am to 9am as 'active' since this is inside business_hours
+9am to 10:12am status as 'active', 10:12am to 11:12am as 'inactive', 11:12am to 1:10pm as 'active' since we don't have data in between, 1:10pm to 2pm as 'inactive'.
+
+My idea to calculate uptime and downtime (nearest neighbor with limitation)
+a) status of timestamp t1 will be continued till the next timestamp only if the next timestamp is within 1.5hrs,
+ else I gonna take t1 status as status from t1 to t1+1hour and status from t1+1hour to next timestamp as 'active' only if next timestamp is within business hours else 'active' till the end of business_hours
+b) why 1.5hr instead of 1hr is there will be some delta while taking the status of restaurants for roughly 1hour. 
+
+My ideas I tried to assign a status for missing points (in the sense if 2 consecutive timestamps of a store are differ morethan 1hr or 1.5hr, then there will be missing points eg: if we have status at 6am and 8:20am, missing point is around 7am.)
+1) greedy nearest neighbor interpolation (status of missing point = status of the nearest point)
+2) by finding a polynomial Function that fits all points and finding y value for the missing x value. (y= status and x=timestamp) 
+3) by using machine learning 
+4) center of mass approach (like calculating status at missing point by taking an average of status which are present within some 'k' hours frame from missing point and weights as the distance from that missing point to remaining points)
+5) nearest neighbor with limitation (my approach)
+
+reason for rejections:
+In 1, even if the missing point and next available timestamps are so far, it will take status as the status of next available timestamp, which is not at all accurate.
+in 2, polynomial function may be correct if we have fewer points and values of y are multiple integers. but here we have many points and y value(status) is either 1 or 0. so, there will be many turns in the graph that will give inappropriate equation.
+In 3, the given data is only for a week, but we need more data to find some patterns in the data because there may be some similarities between the same day in every week for example 'happy hours' will be there for every "Thrusday' for a restaurant etc, so we can't give missing value based on data of other days in given week data.
+In 4, this is a good approach but it will take more "time Complexity".
+
+
+
+
+
 data_source1.csv contains status of the stores
 data_source2.csv contains business hours of all the stores
 data_source3.csv contains Timezone for the stores
