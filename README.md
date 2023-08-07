@@ -4,11 +4,13 @@ for example, consecutive timestamps in data_source1.csv (i.e contains a status f
 9am to 10:12am status as 'active', 10:12am to 11:12am as 'inactive', 11:12am to 1:10pm as 'active' since we don't have data in between, 1:10pm to 2pm as 'inactive'.
 
 My idea to calculate uptime and downtime (nearest neighbor with limitation)
+
 a) status of timestamp t1 will be continued till the next timestamp only if the next timestamp is within 1.5hrs,
  else I gonna take t1 status as status from t1 to t1+1hour and status from t1+1hour to next timestamp as 'active' only if next timestamp is within business hours else 'active' till the end of business_hours
+ 
 b) why 1.5hr instead of 1hr is there will be some delta while taking the status of restaurants for roughly 1hour. 
 
-My ideas I tried to assign a status for missing points (in the sense if 2 consecutive timestamps of a store are differ morethan 1hr or 1.5hr, then there will be missing points eg: if we have status at 6am and 8:20am, missing point is around 7am.)
+below are my 5 ideas which I tried to assign a status for missing points (in the sense if 2 consecutive timestamps of a store are differ more than 1hr or 1.5hr, then there will be missing points eg: if we have status at 6am and 8:20am, missing point is around 7am.)
 1) greedy nearest neighbor interpolation (status of missing point = status of the nearest point)
 2) by finding a polynomial Function that fits all points and finding y value for the missing x value. (y= status and x=timestamp) 
 3) by using machine learning 
