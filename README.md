@@ -17,13 +17,16 @@ My ideas I tried to assign a status for missing points (in the sense if 2 consec
 
 reason for rejections:
 In 1, even if the missing point and next available timestamps are so far, it will take status as the status of next available timestamp, which is not at all accurate.
+
 in 2, polynomial function may be correct if we have fewer points and values of y are multiple integers. but here we have many points and y value(status) is either 1 or 0. so, there will be many turns in the graph that will give inappropriate equation.
+
 In 3, the given data is only for a week, but we need more data to find some patterns in the data because there may be some similarities between the same day in every week for example 'happy hours' will be there for every "Thrusday' for a restaurant etc, so we can't give missing value based on data of other days in given week data.
+
 In 4, this is a good approach but it will take more "time Complexity".
 
 
 
-
+#################################################################################################################
 
 data_source1.csv contains status of the stores
 data_source2.csv contains business hours of all the stores
